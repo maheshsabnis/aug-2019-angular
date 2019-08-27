@@ -94,3 +94,70 @@
       5. COmponent will push updates to UI and UI will be updated 
    3. ngModel is attribute directive, this needs 'FormsModule' from @angular/forms to be imported in @NgModule
 
+#==============================================================================================
+
+# Angular Directives
+1. Component Directives
+   1. Each Component
+   2. Can be reused in 'any' html template as HTML Element  
+2. Structiral Directives      
+   1. Add/Remove Html element dynamically based on Data or COndition
+      1. *ngFor
+      2. *ngIf
+      3. *ngSwitch -- *ngSwitch-Case
+3. Attribute Directives
+   1. ngModel
+   2. ngClass
+
+#=============================================================================================
+1. OnInit is an interface implment by Angular Component and that provides 'Lifecycle' methods for Angular Component
+   1. The 'ngOnInit()' method, this will be immediatly invoked after Component's Constructor
+   2. Write code in this method, that we cannot afford to write in Component's constructor  
+
+#=============================================================================
+1. Angular Forms
+   1. @angular/forms package
+      1. FormsModule
+      2. ReactiveFormsModule
+         1. Data-Driven Forms aka Model-Driven Forms
+            1. Tight-Coupling between Model class and Angular Forms
+         2. <form> tag mapped with ngForm directive, usses onSubmit that mapped with ngSubmit
+         3. The 'name' attribute of HTML element is now replaced or mapped with 'formControlName' attribute directive
+            1. This directive will map 'Model-Class-Public-Properties' with the HTML elements
+               1. This replaces the use of ngModel
+            2. The 'FormControl' class will be used to map 'Model-Class-Public-Properties' with 'formControlName'
+            3. The 'Validators' class, used to apply validation rules for Model-Properties mapped with formControlName. The following methods are 'static' methods
+               1. require(AbstractControl)
+                  1. AbstractControl reprsents the COntrol to validated using Model-Property and the UI element
+                  2. If validator accepts the AbstractControl, then the method will execute with its reference
+                  3. E.g. Validators.requir 
+               2. min(value)
+                  1. Validators.min(value)
+               3. max(value)
+               4. minlength(value)
+               5. maxlength(value)
+               6. requiredTrue(true)
+                  1. Always expects true
+               7. pattern(Regular Expression)
+               8. email(Email)
+               9. compose()
+                  1.  Used to apply multiple validation rules on a Model Property and hence on UI element 
+         4. The 'FormGroup' class, the class that groups the <form> with all validators and Model class for Post or execution
+            1. The FormGroup class has 'value' property that is used to contains valaues for each editable element that is having formControlName attribnute applied on it
+         5. The FormBuilder, that build multiple FormGroups
+         6. Validation Rules on HTML View
+            1. <FormGroup>.controls.<formControlName>.dirty --> Changed
+            2. <FormGroup>.controls.<formControlName>.invalid / !<FormGroup>.controls.<formControlName>.valid
+            3. Evaluate the Error Condition
+               1. <FormGroup>.controls.<formControlName>.errors.<error-type>
+                  1. error-type
+                     1. required, min, max, menlength, maxlength, pattern, etc.
+         7. The Custom Validator
+            1. The method must be static for Custom Valdator
+            2. Can accept primptive type (number, string, etc) or can accept AbstractControl
+            3. Must return 'any' type
+               1. If value is valid, then method returns 'null'
+               2. For invalid value the return will be
+                  1. return {invalid:true} / {valid:false} 
+   
+   
